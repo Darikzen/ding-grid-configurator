@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DING Grid Configurator
+Comment=Customize the DING desktop icon grid
+Exec=python3 -m ding_grid_configurator.main
+Icon=com.github.darikzen.ding-grid-configurator
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;Settings;
+Keywords=desktop;icons;ding;gnome;grid;
+StartupNotify=true
+StartupWMClass=ding-grid-configurator
