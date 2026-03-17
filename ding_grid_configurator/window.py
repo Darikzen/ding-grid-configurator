@@ -7,7 +7,7 @@ from pathlib import Path
 import gi
 gi.require_version('Adw', '1')
 gi.require_version('Gtk', '4.0')
-from gi.repository import Adw, Gtk, Gio, GLib
+from gi.repository import Adw, Gtk, Gio, GLib # type: ignore
 
 from . import ding_parser as parser
 from .ding_restart import restart_extension

@@ -2,7 +2,7 @@
 
 import gi
 gi.require_version('Gio', '2.0')
-from gi.repository import Gio, GLib
+from gi.repository import Gio, GLib # type: ignore
 
 
 EXTENSION_UUID = 'ding@rastersoft.com'
