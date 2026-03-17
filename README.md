@@ -28,11 +28,31 @@ DING provides four icon size presets (Tiny, Small, Standard, Large) but exposes 
 sudo apt install python3-gi gir1.2-adw-1 gir1.2-gtk-4.0 policykit-1
 ```
 
-## Running
+## Install
 
 ```bash
 git clone https://github.com/darikzen/ding-grid-configurator.git
 cd ding-grid-configurator
+sudo make install
+```
+
+This installs the Python package, a desktop entry (so the app appears in your app launcher), and the PolicyKit policy for privilege escalation.
+
+To uninstall:
+
+```bash
+sudo make uninstall
+```
+
+Then launch from the app launcher or run:
+
+```bash
+ding-grid-configurator
+```
+
+### Run without installing
+
+```bash
 python3 -m ding_grid_configurator.main
 ```
 
