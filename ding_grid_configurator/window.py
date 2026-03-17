@@ -13,7 +13,12 @@ from gi.repository import Adw, Gtk, Gio, GLib  # type: ignore
 from . import ding_parser as parser
 from .ding_restart import restart_extension
 
-HELPER_SCRIPT = str(Path(__file__).parent / 'pkexec_helper.sh')
+# When installed, the helper lives at a fixed root-owned path that PolicyKit
+# knows about (auth_admin_keep applies there).  Fall back to the source tree
+# when running directly with `python3 -m ding_grid_configurator.main`.
+_INSTALLED_HELPER = Path('/usr/share/ding-grid-configurator/pkexec_helper.sh')
+HELPER_SCRIPT = str(_INSTALLED_HELPER if _INSTALLED_HELPER.exists()
+                    else Path(__file__).parent / 'pkexec_helper.sh')
 PRESET_LABELS = ['Tiny', 'Small', 'Standard', 'Large']
 PRESET_KEYS   = ['tiny', 'small', 'standard', 'large']
 MARGIN_KEYS   = ['top', 'bottom', 'left', 'right']

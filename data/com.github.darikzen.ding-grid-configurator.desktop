@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=DING Grid Configurator
 Comment=Customize the DING desktop icon grid
-Exec=python3 -m ding_grid_configurator.main
+Exec=ding-grid-configurator
 Icon=com.github.darikzen.ding-grid-configurator
 Terminal=false
 Type=Application
