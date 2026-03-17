@@ -567,29 +567,17 @@ class DingConfiguratorWindow(Adw.ApplicationWindow):
             self._show_error('Temp File Error', str(e))
             return
 
-        self._pkexec_run(['backup'], self._after_backup)
+        # Single pkexec call: backup (if needed) + write both files = one password prompt
+        self._pkexec_run(
+            ['apply', self._enums_tmp.name, self._grid_tmp.name],
+            self._after_apply,
+        )
 
-    def _after_backup(self, success, error):
-        if not success:
-            self._cleanup_tmp()
-            self._set_busy(False)
-            self._show_error('Backup Failed', error or 'Could not create backup files.')
-            return
-        self._pkexec_run(['write-enums', self._enums_tmp.name], self._after_write_enums)
-
-    def _after_write_enums(self, success, error):
-        if not success:
-            self._cleanup_tmp()
-            self._set_busy(False)
-            self._show_error('Write Failed', error or 'Could not write enums.js.')
-            return
-        self._pkexec_run(['write-grid', self._grid_tmp.name], self._after_write_grid)
-
-    def _after_write_grid(self, success, error):
+    def _after_apply(self, success, error):
         self._cleanup_tmp()
         if not success:
             self._set_busy(False)
-            self._show_error('Write Failed', error or 'Could not write desktopGrid.js.')
+            self._show_error('Write Failed', error or 'Could not write DING files.')
             return
         restart_extension(self._after_restart)
 
